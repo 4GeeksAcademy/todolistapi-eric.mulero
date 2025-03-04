@@ -38,11 +38,17 @@ const Home = () => {
         setTareas(nuevasTareas);
 
         try {
-            await fetch(`https://playground.4geeks.com/todo/users/${username}`, {
-                method: "PUT",
+            await fetch(`https://playground.4geeks.com/todo/todos/${username}`, {
+                method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(nuevasTareas),
+                body: JSON.stringify(
+                    {
+                        "label":inputText,
+                        "is_done":false
+                    }
+                ),
             });
+            setInputText("")
         } catch (error) {
             console.error("Error:", error);
         }
@@ -53,10 +59,9 @@ const Home = () => {
         setTareas(nuevasTareas);
 
         try {
-            await fetch(`https://playground.4geeks.com/todo/users/${username}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(nuevasTareas),
+            await fetch(`https://playground.4geeks.com/todo/todos/${taskId}`, {
+                method: "DELETE",
+             
             });
         } catch (error) {
             console.error("Error:", error);
